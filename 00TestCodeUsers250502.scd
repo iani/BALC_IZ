@@ -4,7 +4,8 @@ BADrumKit();
 
 // Μετά δοκίμασε αυτά:
 
-~snare1 = Pbindef(\snare, \freq,[10,20], \dur, BAMetro.industone(0.25, 0.5, 1, 0.25, repeat:inf)*0.5, \amp, 0.8, \shape,1, \buf, ~bufs[3].postln, \pan, 0.4).play;
+~snare1 = Pbindef(\snare, \freq,[10,20], \dur, Pbindef(\snare2, \instrument, \default).play;
+, \amp, 0.8, \shape,1, \buf, ~bufs[3].postln, \pan, 0.4).play;
 
 ~kick1 = Pbindef(\kick1, \freq,120, \dur, BAMetro.industone(0.25, 0.5, 1, 0.25, repeat:inf)*0.5, \amp, 0.7, \shape,[0.01, 0.2], \buf, ~bufs[0], \pan, 0.1).play;
 
@@ -23,6 +24,6 @@ BADrumKit2();
 //:
 ~snare1 = Pbindef(\snare,
 	\instrument, \default,
-	\freq, [60, 70].midicps,
+	\freq, ([60, 70] + Pseq([7, 2, 4, -2], inf)).midicps,
 	\dur, BAMetro.industone(0.25, 0.5, 1, 0.25, repeat:inf)*0.5
 ).play;

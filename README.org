@@ -1,0 +1,78 @@
+#+title: Readme
+
+*How to use and extend BALC class and the library in this repo (BALC_REDO_IZ)*
+
+* Installing the classes
+
+Put the library in your SC Extensions folder and recompile
+
+* Installing the sounds
+
+Put the folder with the wav sound files in your extensions folder, and name it
+
+=BALC-lib=
+
+For example, on my computer this is here:
+
+#+begin_example
+/Users/<xxx>/Library/Application Support/SuperCollider/Extensions/BALC-lib
+#+end_example
+
+And the folder contains a single subfolder
+sounds
+and this contains 2 subfolders, like this:
+
+#+begin_example
+sounds
+   sounds/drums
+   sounds/sounds_drums
+#+end_example
+
+All wav files contained in these subfolders are loaded when the server boots and BALC is inited.
+
+* Using the class
+
+Run
+
+#+begin_src sclang
+BALC.init;
+#+end_src
+
+This activates the related server-object classes.  When the server boots, all server-object classes create the necessary objects.
+
+* Server resource classes
+
+** BaBus
+
+This class creates buses when the server boots, and stores them internally in dictionary =all=.
+The buses are then accessible by name.
+The buses are created according to an array of specs.
+The format of the specs is described in BeBus.sc
+It is:
+
+#+begin_example
+Specs are of the form:
+\busName
+(Which defaults to:) Bus.audio(Server.default, 2);
+or:
+[\busName, <rate>, <numChannels>]
+where <rate> is \control or \audio and <numChannels> defaults to 2
+#+end_example
+
+You can write the specs array in a file
+
+busSpecs.scd
+
+In the same directory as BaBus.sc
+and the file will be loaded at init time.
+
+Otherwise you can specify the specs for loading buses through code like this:
+
+#+begin_src sclang
+BeBus loadSpecs: [
+	[\ctlbus1, \control, 1],
+	[\ctlbus2, \control, 1],
+	[\audiobus1, \audio, 1],
+	// ... etc.
+];
+#+end_src

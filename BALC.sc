@@ -6,15 +6,16 @@
 
 BALC {
 
-	*initClass { // init when the server boots.
-		StartUp add: { ServerBoot add: { this.init } };
-	}
+	// *initClass { // init when the server boots.
+	// 	StartUp add: { ServerBoot add: { this.init } };
+	// }
 	*init {
 		Server.default.waitForBoot {
 			BaBus.init;
 			BaNdefs.init;
 			BaBufs.init;
 			BaSynthDefs.init;
+			Metro.init;
 		}
 	}
 }

@@ -11,3 +11,4 @@ Pbindef(\snare2,
 	\shape,Prand([0.01, 0.05, 0.03],inf),
 	\pan, Pseq((-10..10).palindrome.stutter(3).normalize(-1.0, 1.0), inf)
 ).play;
+//:
