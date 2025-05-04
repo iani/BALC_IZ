@@ -11,6 +11,7 @@ BaSynthDefs {
 
 	*loadSynthDefs {
 		"=== BaSynthDefs loads synthdefs ===".postln;
+		"Loading bf".postln;
 		SynthDef(\bf, {|out=0, buf=1023, amp=1.0, pos = 0,
 			freq=261.6255653006, cutoff = 16000, pan = 0, shape= 0.1, char |
 			var sig, env, comp;
@@ -29,6 +30,14 @@ BaSynthDefs {
 				relaxTime:  0.01
 			);
 			Out.ar(out, Pan2.ar(comp * env * amp, pan))
+		}).add;
+		"Loading nastyS".postln;
+		SynthDef(\nastyS, {| wacky = 0.5, carfreq = 100, modfreq = 0.4, amp = 0.1, pan = 0, shape = 1 |
+			var env, source;
+
+			env = EnvGen.kr(Env([0, 1, 0], [shape, shape]), 1, doneAction: 2);
+			source = BANastySynth.ar(wacky, carfreq, modfreq, amp);
+			Out.ar(0, Pan2.ar(source*env, pan))
 		}).add;
 		"=== BaSynthDefs finished loading synthdefs ===".postln;
 	}

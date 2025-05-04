@@ -1,35 +1,21 @@
 
 /*
-// Μετά δοκίμασε αυτά:
-
 ~snare1 = Pbindef(\snare, \freq,[10,20], \dur, Pbindef(\snare2, \instrument, \default).play;
 , \amp, 0.8, \shape,1, \buf, ~bufs[3].postln, \pan, 0.4).play;
 
 ~kick1 = Pbindef(\kick1, \freq,120, \dur, BAMetro.industone(0.25, 0.5, 1, 0.25, repeat:inf)*0.5, \amp, 0.7, \shape,[0.01, 0.2], \buf, ~bufs[0], \pan, 0.1).play;
 
 ~hihat1 = Pbindef(\hihat1, \freq,390, \dur, BAMetro.duple(0.25, 0.25, repeat:inf)*0.5, \amp, 0.6, \shape,Prand([0.01, 0.05, 0.03],inf),\buf, ~bufs[7], \pan, -0.5).play;
-
-//: Debugging 金  2  5 2025 21:39
-
-BADrumKit2();
-
-
-//:
-
-~snare1 = Pbindef(\snare, \instrument, \default).play;
-~snare1.stop;
-~snare1.play; //  ~snare1.start; // start not understood!
-//:
-~snare1 = Pbindef(\snare,
-	\instrument, \default,
-	\freq, ([60, 70] + Pseq([7, 2, 4, -2], inf)).midicps,
-	\dur, BAMetro.industone(0.25, 0.5, 1, 0.25, repeat:inf)*0.5
-).play;
 */
+
 //: ============= Initialize BALC and enable User explicitly ============
 // Test these in different order to check compatibility
 BALC.init;
 User.enable;
+BALC.globalizeBufs; // this writes the buferss by their name to the global parent dictionary
+// it is useful for playing buffers with patterns
+// Instead of \drum1.babuf you write ~drum1
+
 //: ===== Try these with BALC inited and User enabled =====
 \snare1 play: (instrument: \default);
 \snare1.stop;
@@ -76,7 +62,7 @@ User.enable;
 \snare1 play: (freq: [10, 20]);
 \snare1.stop;
 //: Test 1b: Many parameter keys at once
-\snare2 play: (freq: [10,20],
+\snare2 play: (freq: [30,40],
 	dur: BAMetro.industone(0.25, 0.5, 1, 0.25, repeat:inf)*0.5,
 	amp: 0.8, shape: 1, buf: \drum1.babuf, pan: 0.1
 );
@@ -86,6 +72,28 @@ User.enable;
 \snare2 play: (freq: ((1..50).normalize(0.95, 5).palindrome).pseq * [10, 20]);
 
 \snare2.stop;
+
+\snare2 play: (buf: \drum1.babuf, shape: 1);
+\snare3 play: (buf: \drum1.babuf, shape: 1);
+//:
+\snareX play: (freq: [30,40],
+	//	dur: BAMetro.industone(0.25, 0.5, 1, 0.25, repeat:inf)*0.5,
+	amp: 0.8, shape: 1, buf: \drum1.babuf, pan: 0.1
+);
+//: shortcut for playbuf with bf synthdef:
+// make sure you run these first:
+// BALC.init;
+// BALC.globalizeBufs;
+
+\blah.playBuf play: (
+	freq: [300,400],
+	dur: BAMetro.industone(0.25, 0.5, 1, 0.25, repeat:inf)*0.5,
+	amp: 0.8, shape: 1,
+	buf: ~drum2,
+	pan: 0.1
+);
+//: Debugging
+\x.playBuf
 
 //: ====== Test 2: Use buffers + synthdefs from BALC ======
 BALC.init; // initialize to load buffers
