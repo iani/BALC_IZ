@@ -31,4 +31,13 @@ M {
 		^result;
 	}
 
+	*sync { this.push }
+	*push {
+		currentEnvironment[\clock] = metronomos;
+		currentEnvironment[\quant] = 1;
+	}
+	*async {
+		currentEnvironment[\clock] = nil;
+		currentEnvironment[\quant] = nil;
+	}
 }

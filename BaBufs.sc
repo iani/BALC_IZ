@@ -28,4 +28,7 @@ BaBufs {
 		this.all.keys.asArray.sort.postln;
 		"==================".postln;
 	}
+	*globalizeBufs {
+		this.all keysValuesDo: { | key, buf | key putGlobal: buf; }
+	}
 }

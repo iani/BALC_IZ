@@ -15,7 +15,8 @@ BALC {
 			BaNdefs.init;
 			BaBufs.init;
 			BaSynthDefs.init;
-			Metro.init;
+			M.init;
 		}
 	}
+	*globalizeBufs { BaBufs.globalizeBufs }
 }
