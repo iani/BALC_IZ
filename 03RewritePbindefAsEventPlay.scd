@@ -37,11 +37,12 @@ User.enable;
 \snare1.clear; // stops and stores an empty EventStream
 \snare1.play;  // plays the empty EventStream
 
+~drum1;
 //: Test 1a: Gradual modification of parameters in small numbers
 // Checked this with BALC inited and User enabled:
 BALC.init;
 User.enable;
-\snare1 play: (instrument: \bf, buf: \drum1.babuf, amp: 1);
+\snare1 play: (instrument: \bf, buf: ~drum1, amp: 1);
 \snare1 play: (dur: 0.5);
 \snare1 set: (dur: 0.2); // same as play but does not start if not playing
 ~myfunc = { 0.01 exprand: 1.0 };
@@ -63,6 +64,7 @@ User.enable;
 \snare1.stop;
 //: Test 1b: Many parameter keys at once
 \snare2 play: (freq: [30,40],
+	instrument: \bf,
 	dur: BAMetro.industone(0.25, 0.5, 1, 0.25, repeat:inf)*0.5,
 	amp: 0.8, shape: 1, buf: \drum1.babuf, pan: 0.1
 );
@@ -70,13 +72,14 @@ User.enable;
 \snare2 play: (freq: [10, 20] * 2);
 //:
 \snare2 play: (freq: ((1..50).normalize(0.95, 5).palindrome).pseq * [10, 20]);
-
+//:
 \snare2.stop;
 
-\snare2 play: (buf: \drum1.babuf, shape: 1);
+\snare2 play: (buf: ~drum2, shape: 1);
 \snare3 play: (buf: \drum1.babuf, shape: 1);
 //:
 \snareX play: (freq: [30,40],
+	instrument: \bf,
 	//	dur: BAMetro.industone(0.25, 0.5, 1, 0.25, repeat:inf)*0.5,
 	amp: 0.8, shape: 1, buf: \drum1.babuf, pan: 0.1
 );
@@ -85,7 +88,7 @@ User.enable;
 // BALC.init;
 // BALC.globalizeBufs;
 
-\blah.playBuf play: (
+\blah.playbuf play: (
 	freq: [300,400],
 	dur: BAMetro.industone(0.25, 0.5, 1, 0.25, repeat:inf)*0.5,
 	amp: 0.8, shape: 1,

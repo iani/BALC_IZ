@@ -10,15 +10,17 @@ BaBufs {
 	*all { ^all ?? { all = () } }
 
 	*init {
-		Server.default doWhenBooted: { this.loadBuffers };
+		// Server.default doWhenBooted: { this.loadBuffers };
+		this.loadBuffers;
 	}
 
 	*loadBuffers {
 		postln("=== Loading buffers for" + this + "===");
 		filesPath = PathName(Platform.userExtensionDir +/+ "BALC-lib/sounds/");
-		// postln("Entries in " + filesPath.fullPath);
+		postln("\n\n\n=====Entries in " + filesPath.fullPath);
 		filesPath.entries do: { | p |
 			p.fullPath.entriesMatchingWav do: { | w |
+				w.postln;
 				this.all[
 					w.fileNameWithoutExtension.split($_)[1..].catList("_").asSymbol;
 				] = Buffer.read(Server.default, w)
@@ -29,6 +31,12 @@ BaBufs {
 		"==================".postln;
 	}
 	*globalizeBufs {
-		this.all keysValuesDo: { | key, buf | key putGlobal: buf; }
+		postln(
+			"\n================ Globalizing" + this.all.size
+			+ "BALC buffers ================");
+		this.all keysValuesDo: { | key, buf | key putGlobal: buf; };
+		"Globalized buffer names are:".postln;
+		this.all.keys.asArray.sort.postln;
+		"=============================================================".postln
 	}
 }
