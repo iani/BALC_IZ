@@ -6,7 +6,7 @@
 
 BaSynthDefs {
 	*init {
-		Server.default doWhenBooted: { this.loadSynthDefs }
+		Server.default waitForBoot: { this.loadSynthDefs }
 	}
 
 	*loadSynthDefs {
