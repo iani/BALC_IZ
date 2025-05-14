@@ -12,7 +12,7 @@ BALC {
 	*init {
 		Server.default.waitForBoot {
 			{ BaBus.init; }.defer(1);
-			{ BaNdefs.init; }.defer(2);
+			// { BaNdefs.init; }.defer(2);
 			{ BaBufs.init; }.defer(3)
 			{ BaSynthDefs.init; }.defer(4);
 			{ M.init; }.defer(5);
