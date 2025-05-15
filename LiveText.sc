@@ -1,6 +1,7 @@
 //VA 240909 Map Text to num
 LiveText {
  	classvar <>server;
+	classvar <ints, <floats, <texts;
 	var name;
 	*new{
 		arg s, n, textPath;
@@ -15,7 +16,7 @@ LiveText {
 	}
 
 	*text{|text, rep=0|
-		var loopy, texts, ints, floats;
+		var loopy;
 		fork {
 			0.1.wait;
 			texts = [

@@ -10,12 +10,13 @@ BALC {
 	// 	StartUp add: { ServerBoot add: { this.init } };
 	// }
 	*init {
-		Server.default.waitForBoot {
-			{ BaBus.init; }.defer(1);
+		ServerBoot add:
+		{
+			BaBus.init;
 			// { BaNdefs.init; }.defer(2);
-			{ BaBufs.init; }.defer(3)
-			{ BaSynthDefs.init; }.defer(4);
-			{ M.init; }.defer(5);
+			BaBufs.init;
+			BaSynthDefs.loadSynthDefs;
+			M.init;
 		}
 	}
 	*globalizeBufs { BaBufs.globalizeBufs }
