@@ -1,5 +1,5 @@
 //VA 240909 Map Text to num
-LiveText{
+LiveText {
  	classvar <>server;
 	var name;
 	*new{
@@ -166,6 +166,9 @@ LiveText{
 					].at(char);
 				};
 			];
+			\ints !!! ints;
+			\floats !!! floats;
+
 			0.1.wait;
 		};
 	}
