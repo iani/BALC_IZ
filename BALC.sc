@@ -17,6 +17,7 @@ BALC {
 			BaBufs.init;
 			BaSynthDefs.loadSynthDefs;
 			M.init;
+			GrainEnvs();
 		}
 	}
 	*globalizeBufs { BaBufs.globalizeBufs }
