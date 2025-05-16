@@ -17,8 +17,6 @@ LiveText {
 
 	*text{|text, rep=0|
 		var loopy;
-		fork {
-			0.1.wait;
 			texts = [
 				ints = Array.new.addAll(text) collect: { |char|
 					IdentityDictionary[
@@ -170,7 +168,5 @@ LiveText {
 			\ints !!! ints;
 			\floats !!! floats;
 
-			0.1.wait;
-		};
 	}
 }
