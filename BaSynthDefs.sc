@@ -172,7 +172,7 @@ BaSynthDefs {
 	*loadSynthGrainA {
 		"Loading synthGrainA...".post;
 		SynthDef(\grainAn, {
-			| out = 0, gate = 1, carfreq = 1000, modfreq = 122, ind = 0.5, rate = 1, pos = 0.5, in = 1, bufnum, trig = 1, dur = 1, amp = 1, fadein = 1, fadeout = 1, sndbuf, envbuf = 1, cutoff = 6000, pan = 0, vol = 0.5, sample, shape |
+			| out = 0, gate = 1, carfreq = 1000, modfreq = 122, ind = 0.5, rate = 1, pos = 0.5, in = 1, bufnum, trig = 1, dur = 1, amp = 1, fadein = 1, fadeout = 1, sndbuf, envbuf = 1, cutoff = 6000, pan = 0, vol = 0.5, sample, shape = 1 |
 
 		var env, index, modulator, zoro, outbus, trigger;
 
