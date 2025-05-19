@@ -92,7 +92,7 @@ BaSynthDefs {
 
 	*loadFmSynth {
 		"Loading fmSynth...".post;
-		SynthDef(\fms, {|out = 0, gate = 1, vol = 0.0001, shape,  carfreq = 440, modfreq = 440, ind = 444, freq = 440, decay = 0.02, cutoff = 2000, amp = 0.001, trig = 1, pan = 0|
+		SynthDef(\fms, {|out = 0, gate = 1, vol = 0.0001, shape = 1,  carfreq = 440, modfreq = 440, ind = 444, freq = 440, decay = 0.02, cutoff = 2000, amp = 0.001, trig = 1, pan = 0|
          var env, source, filter;
          env = EnvGen.kr(Env([0, 1, 0], [shape, shape]), gate, doneAction: 2);
          source = SinOsc.ar(SinOsc.ar(carfreq, modfreq, ind)+freq, 0, amp)*PinkNoise.ar(amp);
